@@ -1,5 +1,5 @@
 import { subCategory } from "./subcategory.entite"
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
 export class Product {
@@ -57,5 +57,6 @@ export class Product {
   pro_langu: string
 
   @ManyToOne(() => subCategory, (pro_sub) => pro_sub.sub_id)
-  pro_sub: string
+  @JoinColumn()
+  pro_sub: subCategory
 }

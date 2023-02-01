@@ -1,8 +1,10 @@
 import { verify } from "../utils/jwt"
 import { NextFunction, Request, Response } from "express"
 import ErrorHandle from "../error/ErrorHandle"
+import { dataSourse } from "../config"
+import { Users } from "../entities/users.entite"
 
-export default (req: Request, res: Response, next: NextFunction): void => {
+export default async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { acces_token } = req.headers
 
@@ -10,8 +12,13 @@ export default (req: Request, res: Response, next: NextFunction): void => {
       const userId = verify(acces_token)
 
       if (typeof userId === "string") {
-        req.userId = userId
-        next()
+        const admin: Users | null = await dataSourse.getRepository(Users).findOneBy({ user_email: userId })
+        if (admin?.user_phone === "+99890823032") {
+          req.userId = userId
+          next()
+        } else {
+          throw new ErrorHandle("Not Admin", 400)
+        }
       } else {
         throw new ErrorHandle("Not Token", 400)
       }

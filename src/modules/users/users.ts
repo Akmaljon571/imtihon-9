@@ -90,7 +90,7 @@ export const Registr = async (req: Request, res: Response, next: NextFunction): 
       typeof gender === "boolean" &&
       typeof password === "string"
     ) {
-      const bazaFindUser = await dataSourse.getRepository(Users).findOneBy({ user_email: email })
+      const bazaFindUser = await dataSourse.getRepository(Users).findOneBy({ user_email: email, user_phone: phone })
 
       if (!bazaFindUser) {
         const randomMail = random()

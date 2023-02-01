@@ -6,12 +6,12 @@ CREATE table users(
     user_email text not null unique,
     user_pol boolean default true,
     user_password varchar(13) not null
-); 
+);                                              ✅
 
 CREATE TABLE category(
     cat_id uuid Primary Key,
     cat_title varchar(100) not null
-);
+);                                              ✅
 
 CREATE TABLE subCategory(
     sub_id uuid  Primary Key,

@@ -1,5 +1,6 @@
 import { createClient } from "redis"
 import ErrorHandle from "../error/ErrorHandle"
+import { SEKUND } from "./index"
 
 export const fetchRedis = async () => {
   try {
@@ -7,6 +8,13 @@ export const fetchRedis = async () => {
 
     client.on("error", (err): void => console.log(err))
     client.on("connect", (): void => console.log("Connect"))
+
+    setTimeout(async () => {
+      await client.del("allCategory")
+      await client.del("allsubCategory")
+      // await client.del("allCategory")
+      // await client.del("allCategory")
+    }, SEKUND)
 
     await client.connect()
     return client

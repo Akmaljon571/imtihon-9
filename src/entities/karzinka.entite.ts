@@ -1,5 +1,5 @@
 import { Product } from "./product.entite"
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 import { Users } from "./users.entite"
 
 @Entity()
@@ -7,9 +7,11 @@ export class Karzinka {
   @PrimaryGeneratedColumn("uuid")
   karzinka_id: string
 
-  @ManyToOne(() => Product, (karzinka_pro) => karzinka_pro.pro_id)
-  karzinka_pro: string
+  @OneToOne(() => Product, (karzinka_pro) => karzinka_pro.pro_id)
+  @JoinColumn()
+  karzinka_pro: Product
 
-  @ManyToOne(() => Users, (karzinka_user) => karzinka_user.user_id)
-  karzinka_user: string
+  @OneToOne(() => Users, (karzinka_user) => karzinka_user.user_id)
+  @JoinColumn()
+  karzinka_user: Users
 }

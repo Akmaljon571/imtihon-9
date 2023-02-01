@@ -13,6 +13,8 @@ declare global {
         gender?: boolean
         password?: string
         emailCode?: number
+        title?: string
+        categoryId?: string
       }
       userId: string
     }
