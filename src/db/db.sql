@@ -19,7 +19,7 @@ CREATE TABLE subCategory(
     sub_cat uuid,
     foreign key(sub_cat)
     references category(cat_id) 
-);
+);                                              ✅
 
 CREATE TABLE product(
     pro_id uuid Primary Key,
@@ -37,14 +37,15 @@ CREATE TABLE product(
     references subCategory(sub_id)
 );
 
-CREATE TABLE likes(
+CREATE TABLE Comment(
     like_id uuid,
     like_pro uuid,
     foreign key(like_pro)
     references product(pro_id),
     like_user uuid,
     foreign key(like_user) 
-    references users(user_id)
+    references users(user_id),
+    comment: text not null
 );
 
 CREATE TABLE karzinka(
@@ -55,4 +56,4 @@ CREATE TABLE karzinka(
     karzinka_user uuid,
     foreign key(karzinka_user) 
     references users(user_id)
-);
+);                                              ✅

@@ -15,6 +15,8 @@ declare global {
         emailCode?: number
         title?: string
         categoryId?: string
+        comment?: string
+        productId?: string
       }
       userId: string
     }

@@ -12,8 +12,8 @@ export const fetchRedis = async () => {
     setTimeout(async () => {
       await client.del("allCategory")
       await client.del("allsubCategory")
-      // await client.del("allCategory")
-      // await client.del("allCategory")
+      await client.del("allKarzinka")
+      await client.del("allComment")
     }, SEKUND)
 
     await client.connect()
